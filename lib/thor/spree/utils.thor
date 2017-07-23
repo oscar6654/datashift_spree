@@ -27,7 +27,7 @@ module DatashiftSpree
 
       require File.expand_path('config/environment.rb')
 
-      join_tables_to_delete = ["spree_products_taxons", "spree_products_promotion_rules", "spree_option_values_variants"]
+      join_tables_to_delete = ["spree_products_taxons", "spree_product_promotion_rules", "spree_option_values_variants"]
 
       begin
         join_tables_to_delete.each do |table|
