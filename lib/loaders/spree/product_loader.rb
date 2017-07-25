@@ -173,6 +173,12 @@ module DataShift
           save_if_new
 
           add_variants_stock(current_value)
+        
+        elsif (current_value && current_method_detail.operator?('relations'))
+
+          logger.info "Adding Related items"
+
+          add_relations
 
         else
           super
@@ -755,6 +761,53 @@ module DataShift
             end
 
         end
+      end
+
+      # Special case for Relations since it can have additional value applied.
+      # A list of Properties with a optional Value - supplied in form :
+      #   relation_name:related_products|relation_name:related_products_1,related_products_2
+      #  Example :
+      #  boxes:G0001,G0002|accessories:P0005,P00013
+
+      def add_relations
+        # TODO smart column ordering to ensure always valid by time we get to associations
+        save_if_new
+
+        relations_list = get_each_assoc#current_value.split(Delimiters::multi_assoc_delim)
+
+        relations_list.each do |rel|
+
+          # Special case, we know we lookup on name so operator is effectively the name to lookup
+          find_by_name, find_by_value = get_operator_and_data( rel )
+
+          logger.info "Processing Relation Type #{find_by_name}"
+
+          raise "Cannot find Relation via #{find_by_name} (with value #{find_by_value})" unless(find_by_name)
+
+          relation_type = @@relation_type_klass.where(:name => find_by_name).first
+
+          unless relation_type
+            relation_type = @@relation_type_klass.create( :name => find_by_name.humanize, :applies_to => "Spree::Product")
+            logger.info "Created New relation_type #{relation_type.inspect}"
+          end
+
+          values = find_by_value.split(Delimiters::multi_value_delim)
+
+          values.each do |val|
+            related = Spree::Variant.where(sku: val).first
+            if related.present?
+              x = @load_object.relations.new( :relation_type => relation_type )
+              x.relatable = @load_object
+              x.related_to = related.product
+              x.save
+              logger.info "Created New Relation #{x.inspect}"
+            else
+              logger.info "Couldn't find related #{related.inspect}"
+            end
+          end
+
+        end
+
       end
 
     end

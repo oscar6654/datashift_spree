@@ -42,6 +42,8 @@ module DataShift
       @@taxonomy_klass ||= DataShift::SpreeEcom::get_spree_class('Taxonomy')
       @@taxon_klass ||= DataShift::SpreeEcom::get_spree_class('Taxon')
       @@variant_klass ||= DataShift::SpreeEcom::get_spree_class('Variant')
+      @@relation_klass ||= DataShift::SpreeEcom::get_spree_class('Relation')
+      @@relation_type_klass ||= DataShift::SpreeEcom::get_spree_class('RelationType')
 
     end
 
