@@ -145,6 +145,8 @@ module DataShift
 
         elsif(current_method_detail.operator?('variant_sku') && current_value)
 
+          puts "Processing Variant SKU"
+
           if(@load_object.variants.size > 0)
 
             if(current_value.to_s.include?(Delimiters::multi_assoc_delim))
@@ -153,7 +155,10 @@ module DataShift
               values = current_value.to_s.split(Delimiters::multi_assoc_delim)
 
               if(@load_object.variants.size == values.size)
-                @load_object.variants.each_with_index {|v, i| v.sku = values[i].to_s }
+                @load_object.variants.each_with_index {|v, i| 
+                  v.sku = values[i].to_s 
+                  v.save
+                }
                 @load_object.save
               else
                 puts "WARNING: SKU entries did not match number of Variants - None Set"
