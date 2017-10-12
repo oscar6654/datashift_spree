@@ -109,7 +109,10 @@ module DataShift
               values = current_value.to_s.split(Delimiters::multi_assoc_delim)
 
               if(@load_object.variants.size == values.size)
-                @load_object.variants.each_with_index {|v, i| v.price = values[i].to_f }
+                @load_object.variants.each_with_index {|v, i| 
+                  v.price = values[i].to_f
+                  v.save
+                }
                 @load_object.save
               else
                 puts "WARNING: Price entries did not match number of Variants - None Set"
@@ -131,7 +134,10 @@ module DataShift
               values = current_value.to_s.split(Delimiters::multi_assoc_delim)
 
               if(@load_object.variants.size == values.size)
-                @load_object.variants.each_with_index {|v, i| v.cost_price = values[i].to_f }
+                @load_object.variants.each_with_index { |v, i| 
+                  v.cost_price = values[i].to_f 
+                  v.save
+                }
                 @load_object.save
               else
                 puts "WARNING: Cost Price entries did not match number of Variants - None Set"
