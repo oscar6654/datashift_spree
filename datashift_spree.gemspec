@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 #     "LICENSE.txt", 
 #     "{lib}/**/*"].exclude("rdoc").exclude("nbproject").exclude("fixtures").exclude(".log").exclude(".contrib").to_a
   
-  s.test_files = FileList["{spec}/*"]
+#   s.test_files = FileList["{spec}/*"]
   
   s.homepage = "http://github.com/autotelik/datashift_spree"
   s.licenses = ["MIT"]
