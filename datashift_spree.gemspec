@@ -10,12 +10,12 @@ Gem::Specification.new do |s|
   s.description = "Comprehensive Excel/CSV import/export for Spree, Products,Images, any model with full associations"
   s.email = "rubygems@autotelik.co.uk"
   
-  s.files = FileUtils["datashift_spree.thor", 
-    "README.markdown",
-    "datashift_spree.gemspec",
-    'VERSION', 
-    "LICENSE.txt", 
-    "{lib}/**/*"].exclude("rdoc").exclude("nbproject").exclude("fixtures").exclude(".log").exclude(".contrib").to_a
+#   s.files = FileUtils["datashift_spree.thor", 
+#     "README.markdown",
+#     "datashift_spree.gemspec",
+#     'VERSION', 
+#     "LICENSE.txt", 
+#     "{lib}/**/*"].exclude("rdoc").exclude("nbproject").exclude("fixtures").exclude(".log").exclude(".contrib").to_a
   
   s.test_files = FileList["{spec}/*"]
   
