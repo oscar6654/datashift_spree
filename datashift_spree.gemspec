@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = "Comprehensive Excel/CSV import/export for Spree, Products,Images, any model with full associations"
   s.email = "rubygems@autotelik.co.uk"
   
-  s.files = FileList["datashift_spree.thor", 
+  s.files = FileUtils["datashift_spree.thor", 
     "README.markdown",
     "datashift_spree.gemspec",
     'VERSION', 
