@@ -1,4 +1,4 @@
-
+require 'rake'
 
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
@@ -31,4 +31,3 @@ Gem::Specification.new do |s|
 
   # should work with any version of spree so  leave it to the client app to define
 end
-
