@@ -49,7 +49,7 @@ module DataShift
         elsif(method_binding.operator?('variant_images'))
 
           add_variant_images(data)
-
+          binding.pry
         elsif(method_binding.operator?('variant_price') && product_load_object.variants.size > 0)
           binding.pry
           if(data.to_s.include?(multi_assoc_delim))
@@ -68,7 +68,7 @@ module DataShift
               puts "WARNING: Price entries did not match number of Variants - None Set"
             end
           end
-
+        
         elsif(method_binding.operator?('variant_cost_price') && product_load_object.variants.size > 0)
 
           if(data.to_s.include?(multi_assoc_delim))
