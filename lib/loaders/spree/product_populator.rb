@@ -58,7 +58,11 @@ module DataShift
             values = data.to_s.split(multi_assoc_delim)
 
             if(record.variants.size == values.size)
-              record.variants.each_with_index {|v, i| v.price = values[i].to_f }
+    
+              record.variants.each_with_index {|v, i| 
+                  v.price = values[i].to_f
+                  v.save
+                }
               record.save
             else
               puts "WARNING: Price entries did not match number of Variants - None Set"
@@ -80,7 +84,7 @@ module DataShift
             end
           end
 
-        elsif(method_binding.operator?('variant_sku') && product_load_object.variants.size > 0)
+        elsif(method_binding.operator?('variant_sku'))
 
           if(data.to_s.include?(multi_assoc_delim))
 
@@ -88,7 +92,11 @@ module DataShift
             values = data.to_s.split(multi_assoc_delim)
 
             if(product_load_object.variants.size == values.size)
-              product_load_object.variants.each_with_index {|v, i| v.sku = values[i].to_s }
+            
+                  product_load_object.variants.each_with_index {|v, i| 
+                  v.sku = values[i].to_s 
+                  v.save
+               }
               product_load_object.save
             else
               puts "WARNING: SKU entries did not match number of Variants - None Set"
