@@ -51,7 +51,7 @@ module DataShift
           add_variant_images(data)
 
         elsif(method_binding.operator?('variant_price') && product_load_object.variants.size > 0)
-
+          binding.pry
           if(data.to_s.include?(multi_assoc_delim))
 
             # Check if we processed Option Types and assign  per option
