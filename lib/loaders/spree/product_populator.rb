@@ -85,7 +85,7 @@ module DataShift
           end
 
         elsif(method_binding.operator?('variant_sku'))
-
+          binding.pry
           if(data.to_s.include?(multi_assoc_delim))
 
             # Check if we processed Option Types and assign  per option
