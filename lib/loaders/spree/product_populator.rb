@@ -150,7 +150,7 @@ module DataShift
       #
 
       def method_binding_for_variant?(method_binding)
-        method_binding.operator.in?(['variant_sku', 'variant_images', 'variant_images', 'variant_price', 'variant_cost_price'])
+        method_binding.operator.in?(['variant_sku', 'variant_images', 'variant_price', 'variant_cost_price'])
       end
 
       def build_option_types(option_types)
